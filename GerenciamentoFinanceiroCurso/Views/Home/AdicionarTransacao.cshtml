@@ -1,0 +1,52 @@
+﻿@model Financeiro
+
+<h2>Planejamento Financeiro</h2>
+
+<div asp-validation-summary="All" class="text-danger" ></div>
+
+<form asp-action="AdicionarTransacao" asp-controller="Home" method="post">
+
+
+    <div class="mb-3">
+        <label class="form-label">Descrição:</label>
+        <input class="form-control" type="text" asp-for="Descricao"/>
+    </div>
+
+    <div class="mb-3">
+        <label class="form-label">Valor (R$):</label>
+        <input class="form-control" type="number" asp-for="Valor" />
+    </div>
+
+
+    <div class="mb-3">
+        <label class="form-label">Categoria:</label>
+        <select 
+            asp-for="CategoriaId"
+            class="form-select"
+            asp-items="@(new SelectList(ViewBag.Categorias, "CategoriaId", "Nome"))"
+        >
+            <option value=""></option>
+        </select>
+    </div>
+
+
+    <div class="mb-3">
+        <label class="form-label">Data da Operação:</label>
+        <input class="form-control" type="date" asp-for="DataDaOperacao" />
+    </div>
+
+
+
+    <div class="mb-3">
+        <label class="form-label">Transação:</label>
+        <select class="form-select"
+                asp-for="TransacaoId"
+                asp-items="@(new SelectList(ViewBag.Transacoes, "TransacaoId", "Nome"))">
+            <option value=""></option>
+        </select>
+    </div>
+
+
+    <button type="submit" class="btn btn-success w-100 mb-2" > Adicionar</button>
+    <a asp-action="Index" class="btn btn-danger w-100" >Cancelar</a>
+</form>
