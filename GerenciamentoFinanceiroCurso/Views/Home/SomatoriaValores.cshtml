@@ -1,0 +1,96 @@
+﻿@model List<RegistrosFinanceiros>
+
+
+<div class="row mt-5">
+    <a asp-action="index" class="btn btn-info w-100 mb-5">Voltar</a>
+
+
+    <div class="col-md-4">
+        <h2>Ganhos</h2>
+        <table class="table table-bordered mt-2">
+            <thead class="table-success">
+                <tr>
+                    <th>Categoria</th>
+                    <th>Transação</th>
+                    <th>Valor</th>
+                </tr>
+            </thead>
+            <tbody>
+
+                @if (Model.Count() > 0)
+                {
+                    @foreach (var ganho in Model.Where(x => x.TransacaoNome == "Ganho").ToList())
+                    {
+                        <tr>
+                            <td>@ganho.CategoriaNome</td>
+                            <td>@ganho.TransacaoNome</td>
+                            <td>R$ @ganho.ValorCategoria</td>
+                        </tr>
+                    }
+                }
+
+               
+
+
+            </tbody>
+        </table>
+    </div>
+
+    <div class="col-md-4">
+        <h2>Gastos</h2>
+        <table class="table table-bordered mt-2">
+            <thead class="table-danger">
+                <tr>
+                    <th>Categoria</th>
+                    <th>Transação</th>
+                    <th>Valor</th>
+                </tr>
+            </thead>
+            <tbody>
+            
+                @if (Model.Count() > 0)
+                {
+                    @foreach (var ganho in Model.Where(x => x.TransacaoNome == "Gasto").ToList())
+                    {
+                        <tr>
+                            <td>@ganho.CategoriaNome</td>
+                            <td>@ganho.TransacaoNome</td>
+                            <td>R$ @ganho.ValorCategoria</td>
+                        </tr>
+                    }
+                }
+
+
+            </tbody>
+        </table>
+    </div>
+
+    <div class="col-md-4">
+        <h2>Totais</h2>
+        <table class="table table-bordered mt-2">
+            <thead class="table-dark">
+                <tr>
+                    <th>Gastos</th>
+                    <th>Ganhos</th>
+                    <th>Diferença</th>
+                </tr>
+            </thead>
+            <tbody>
+
+                @if (Model.Count() > 0)
+                {
+                    <tr>
+                        <td>R$ @Model.First().Gastos</td>
+                        <td>R$ @Model.First().Ganhos</td>
+                        <td>R$ @Model.First().Diferenca</td>
+                    </tr>
+                }
+               
+                
+
+
+            </tbody>
+        </table>
+    </div>
+
+</div>
